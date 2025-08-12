@@ -5,6 +5,7 @@ import React, { useState } from "react";
 
 export default function Verify() {
   const [userOtp, setUserOtp] = useState("");
+  // eslint-disable-next-line @next/next/no-async-client-component
   const urlParams = useSearchParams();
   const email = urlParams.get("email");
   const supabase = createClient();
