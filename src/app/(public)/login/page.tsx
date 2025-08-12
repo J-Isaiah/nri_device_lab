@@ -2,37 +2,29 @@
 import React from "react";
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/browser";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const supabase = createClient();
+  const supabase = React.useMemo(() => createClient(), []);
   const [userEmail, setUserEmail] = useState("");
-  const [userOtp, setUserOtp] = useState("");
+  const router = useRouter();
 
   async function sendOtp(): Promise<void> {
     const { data, error } = await supabase.auth.signInWithOtp({
       email: userEmail,
       options: {
-        emailRedirectTo: "google.com",
         shouldCreateUser: true,
       },
     });
-  }
-  async function verify() {
-    const {
-      data: { session },
-      error,
-    } = await supabase.auth.verifyOtp({
-      email: userEmail,
-      token: userOtp,
-      type: "email",
-    });
-    console.log(session, error);
+    console.log("one time pass code sent");
+    console.log(data, error);
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     console.log("Submitting form");
     e.preventDefault();
     await sendOtp();
+    router.replace(`/auth/verify?email=${encodeURIComponent(userEmail)}`);
   }
 
   async function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
