@@ -2,9 +2,12 @@
 import { createClient } from "@/utils/supabase/browser";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { AuthError } from "@supabase/supabase-js";
 export default function Verify() {
   const [userOtp, setUserOtp] = useState("");
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [errorBanner, setErrorBanner] = useState<string | null>();
   const supabase = createClient();
   const router = useRouter();
 
@@ -15,6 +18,7 @@ export default function Verify() {
   async function validateOtp() {
     if (!userEmail) {
       console.error("No user email found in local storage");
+      setErrorBanner("User Email Undefined");
       return;
     }
     const { data, error } = await supabase.auth.verifyOtp({
@@ -22,14 +26,20 @@ export default function Verify() {
       token: userOtp.trim(),
       type: "email",
     });
+    if (error) {
+      console.log("error:", error);
+      setErrorBanner(error.toString());
+      return;
+    }
 
-    console.log(data);
+    router.push("/dashboard");
+
+    console.log(data, error);
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     await validateOtp();
-    router.push("/dashboard");
   }
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     setUserOtp(e.target.value);
@@ -43,6 +53,15 @@ export default function Verify() {
             NRI DEVICE MANAGER - Verify
           </h1>
         </div>
+        {errorBanner && (
+          <div className="bg-gray p-2">
+            <p className="text-red-700">{errorBanner}</p>
+            <Link href="/login" className="text-blue-500 underline">
+              Click here to retry
+            </Link>
+          </div>
+        )}
+
         <div className="flex flex-col mb-4">
           <form onSubmit={handleSubmit}>
             <label htmlFor="userOtp" className="text-black mr-2">
