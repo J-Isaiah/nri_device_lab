@@ -22,9 +22,10 @@ export default function Login() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     console.log("Submitting form");
+    localStorage.setItem("userEmail", userEmail);
     e.preventDefault();
     await sendOtp();
-    router.replace(`/auth/verify?email=${encodeURIComponent(userEmail)}`);
+    router.replace(`/auth/verify`);
   }
 
   async function handleInput(event: React.ChangeEvent<HTMLInputElement>) {

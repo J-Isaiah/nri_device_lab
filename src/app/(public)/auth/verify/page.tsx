@@ -1,18 +1,24 @@
 "use client";
 import { createClient } from "@/utils/supabase/browser";
-import { useSearchParams } from "next/navigation";
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 export default function Verify() {
   const [userOtp, setUserOtp] = useState("");
-  // eslint-disable-next-line @next/next/no-async-client-component
-  const urlParams = useSearchParams();
-  const email = urlParams.get("email");
+  const [userEmail, setUserEmail] = useState<string | null>(null);
   const supabase = createClient();
+  const router = useRouter();
 
+  useEffect(() => {
+    const email = localStorage.getItem("userEmail");
+    setUserEmail(email);
+  }, []);
   async function validateOtp() {
+    if (!userEmail) {
+      console.error("No user email found in local storage");
+      return;
+    }
     const { data, error } = await supabase.auth.verifyOtp({
-      email: email!,
+      email: userEmail,
       token: userOtp.trim(),
       type: "email",
     });
@@ -23,6 +29,7 @@ export default function Verify() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     await validateOtp();
+    router.push("/dashboard");
   }
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     setUserOtp(e.target.value);
