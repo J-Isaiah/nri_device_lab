@@ -32,7 +32,7 @@ export default function Verify() {
       return;
     }
 
-    router.push("/dashboard");
+    router.push("/app/dashboard");
 
     console.log(data, error);
   }
