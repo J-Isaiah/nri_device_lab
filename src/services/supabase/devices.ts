@@ -8,7 +8,7 @@ export async function getDevices(): Promise<Device[] | null> {
   const { data: devices, error } = await supabase
     .from("devices")
     .select(
-      "id, location, status,model, device_nickname,last_updated_at,last_updated_by"
+      "device_id, location, status,model, device_nickname,last_updated_at,last_updated_by"
     );
 
   if (error) {

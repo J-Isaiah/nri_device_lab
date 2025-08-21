@@ -2,9 +2,9 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getDevices } from "@/services/supabase/devices";
 import { Device } from "@/types/device";
 import React from "react";
+import DeviceCard from "./deviceCard";
 
 export default async function DeviceToc() {
-  const supabase = await createSupabaseServerClient();
   const devices: Device[] | null = await getDevices();
 
   return (
@@ -21,7 +21,15 @@ export default async function DeviceToc() {
           </tr>
         </thead>
         <tbody>
-          <tr>hello</tr>
+          {devices ? (
+            devices.map((d) => <DeviceCard device={d} />)
+          ) : (
+            <tr>
+              <td colSpan={6} className="text-center py-4">
+                No Devices Avaliable
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
