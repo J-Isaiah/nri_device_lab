@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState } from "react";
-import { createClient } from "@/utils/supabase/browser";
+import { createClient } from "@/lib/supabase/browser";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
