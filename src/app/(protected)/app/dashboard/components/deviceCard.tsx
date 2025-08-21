@@ -8,6 +8,7 @@ type DeviceRow = {
 };
 
 export default function DeviceCard({ device }: DeviceRow) {
+  console.log("Child prop", device);
   return (
     <tr
       onClick={() => window.open(`/app/device/${device.device_id}`)}
@@ -29,7 +30,7 @@ export default function DeviceCard({ device }: DeviceRow) {
         {new Date(device.last_updated_at).toLocaleString()}
       </td>
       <td className="border px-6 py-4 group-hover:text-black">
-        {device.users?.[0]?.email ?? "User Email Not Located"}
+        {device.users?.email ?? "User Email Not Located"}
       </td>
     </tr>
   );
