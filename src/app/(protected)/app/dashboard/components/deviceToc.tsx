@@ -22,7 +22,7 @@ export default async function DeviceToc() {
         </thead>
         <tbody>
           {devices ? (
-            devices.map((d) => <DeviceCard device={d} />)
+            devices.map((d) => <DeviceCard key={d.device_id} device={d} />)
           ) : (
             <tr>
               <td colSpan={6} className="text-center py-4">
