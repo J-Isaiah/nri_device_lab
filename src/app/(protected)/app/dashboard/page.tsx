@@ -2,9 +2,6 @@ import { createSupabaseServerClient } from "../../../../lib/supabase/server";
 import { redirect } from "next/navigation";
 import DeviceToc from "./components/deviceToc";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 export default async function Dashboard() {
   const supabase = await createSupabaseServerClient();
 
