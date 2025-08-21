@@ -6,6 +6,7 @@ import DeviceCard from "./deviceCard";
 
 export default async function DeviceToc() {
   const devices: Device[] | null = await getDevices();
+  console.log(devices);
 
   return (
     <div className="bg-primary h-full w-full shadow-2xl ">

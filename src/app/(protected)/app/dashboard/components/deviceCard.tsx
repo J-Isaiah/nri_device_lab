@@ -1,12 +1,18 @@
+"use client";
+
 import { Device } from "@/types/device";
 import React from "react";
 
 type DeviceRow = {
   device: Device;
 };
-export default function DeviceCard({ key, device }: DeviceRow) {
+
+export default function DeviceCard({ device }: DeviceRow) {
   return (
-    <tr className="odd:bg-primary even:bg-secondary hover:bg-accent hover:shadow-md hover:scale-[1.01] transition-transform duration-200 ease-in-out group">
+    <tr
+      onClick={() => window.open(`/app/device/${device.device_id}`)}
+      className="odd:bg-primary even:bg-secondary hover:bg-accent hover:shadow-md hover:scale-[1.01] transition-transform duration-200 ease-in-out group"
+    >
       <td className="border px-6 py-4 group-hover:text-black first:rounded-l-lg">
         {device.device_nickname}
       </td>
