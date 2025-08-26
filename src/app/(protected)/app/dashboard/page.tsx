@@ -15,7 +15,7 @@ export default async function Dashboard() {
 
   return (
     <main className="flex h-screen bg-secondary items-center justify-center">
-      <div className="mx-auto h-4/5 w-4/5">
+      <div className="mx-auto h-3/5 w-4/5">
         <DeviceToc></DeviceToc>
       </div>
     </main>

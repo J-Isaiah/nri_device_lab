@@ -5,8 +5,8 @@ export type Device = {
   model: string; // e.g., "ESP32"
   device_nickname: string; // friendly name
   last_updated_at: string; // ISO timestamp
-  users?: {
+  last_updated_by?: {
     id: string;
     email: string;
-  };
+  }[];
 };

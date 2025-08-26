@@ -1,7 +1,5 @@
 type DevicePageProps = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 };
 export default async function DeviceDetailPage({ params }: DevicePageProps) {
   const { id } = await params;

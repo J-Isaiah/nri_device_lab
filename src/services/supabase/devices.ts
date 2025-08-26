@@ -5,18 +5,20 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function getDevices(): Promise<Device[] | null> {
   const supabase = await createSupabaseServerClient();
-  const { data: devices, error } = await supabase.from("devices").select(`
+  const { data: devices, error } = await supabase.from("devices").select(
+    `
     device_id,
     location,
     status,
     model,
     device_nickname,
     last_updated_at,
-    users!devices_last_updated_by_fkey (
+    last_updated_by:users!devices_last_updated_by_fkey (
       id,
       email
     )
-  `);
+  `
+  );
   console.log(devices);
 
   if (error) {
