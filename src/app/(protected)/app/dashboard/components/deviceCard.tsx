@@ -30,7 +30,7 @@ export default function DeviceCard({ device }: DeviceRow) {
         {new Date(device.last_updated_at).toLocaleString()}
       </td>
       <td className="border px-6 py-4 group-hover:text-black">
-        {device.last_updated_by?.[0].email ?? "User Email Not Located"}
+        {device.last_updated_by?.[0]?.email ?? "User Email Not Located"}
       </td>
     </tr>
   );
