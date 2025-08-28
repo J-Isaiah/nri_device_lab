@@ -2,11 +2,7 @@ import { Device } from "@/types/device";
 import React from "react";
 import DeviceCard from "./deviceCard";
 
-export default async function DeviceToc({
-  devices,
-}: {
-  devices: Device[] | null;
-}) {
+export default function DeviceToc({ devices }: { devices: Device[] | null }) {
   console.log(devices);
 
   return (
