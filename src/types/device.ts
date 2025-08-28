@@ -8,5 +8,5 @@ export type Device = {
   last_updated_by?: {
     id: string;
     email: string;
-  }[];
+  };
 };

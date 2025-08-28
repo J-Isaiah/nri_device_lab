@@ -33,6 +33,7 @@ export default async function DeviceToc() {
           )}
         </tbody>
       </table>
+      button
     </div>
   );
 }
