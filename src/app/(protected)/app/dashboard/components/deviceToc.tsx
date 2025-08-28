@@ -1,11 +1,12 @@
-import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { getDevices } from "@/services/supabase/devices";
 import { Device } from "@/types/device";
 import React from "react";
 import DeviceCard from "./deviceCard";
 
-export default async function DeviceToc() {
-  const devices: Device[] | null = await getDevices();
+export default async function DeviceToc({
+  devices,
+}: {
+  devices: Device[] | null;
+}) {
   console.log(devices);
 
   return (
@@ -33,7 +34,6 @@ export default async function DeviceToc() {
           )}
         </tbody>
       </table>
-      button
     </div>
   );
 }
