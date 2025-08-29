@@ -26,7 +26,6 @@ export default function DashBoardShell({
             }}
           ></div>
           <div className="fixed top-0 right-0 h-full w-120 bg-gray-300 shadow-2xl z-50">
-            Hello
             <AddDeviceSideBar />
           </div>
         </div>
