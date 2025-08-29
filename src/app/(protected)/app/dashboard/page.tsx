@@ -6,7 +6,6 @@ import DashBoardShell from "./dashBoardShell";
 
 export default async function Dashboard() {
   const devices: Device[] | null = await getDevices();
-  console.log("Devices ", devices);
 
   const supabase = await createSupabaseServerClient();
 
