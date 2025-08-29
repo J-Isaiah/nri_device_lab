@@ -28,6 +28,12 @@ export async function getDevices(): Promise<Device[] | null> {
     );
     throw new Error(error.message);
   }
-
-  return devices;
+  return devices.map(
+    (d: any): Device => ({
+      ...d,
+      last_updated_by: Array.isArray(d.last_updated_by)
+        ? d.last_updated_by[0] ?? undefined
+        : d.last_updated_by,
+    })
+  );
 }
