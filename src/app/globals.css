@@ -15,6 +15,7 @@
   --color-secondary: #393e46; /* dark gray */
   --color-accent: #00adb5; /* teal */
   --color-highlight: #eeeeee; /* light */
+  --color-accent-dark: #00787d;
 }
 
 @media (prefers-color-scheme: dark) {

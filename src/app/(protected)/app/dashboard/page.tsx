@@ -17,5 +17,5 @@ export default async function Dashboard() {
     redirect("/login?redirect=app/dashboard");
   }
 
-  return <DashBoardShell devices={devices}></DashBoardShell>;
+  return <DashBoardShell user={user.id} devices={devices}></DashBoardShell>;
 }

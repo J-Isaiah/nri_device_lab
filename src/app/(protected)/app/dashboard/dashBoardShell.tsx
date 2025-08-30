@@ -6,11 +6,11 @@ import AddDeviceButton from "./components/addDeviceButton";
 import { Device } from "@/types/device";
 import AddDeviceSideBar from "./components/addDeviceSideBar";
 
-export default function DashBoardShell({
-  devices,
-}: {
+type DashBoardShellProps = {
   devices: Device[] | null;
-}) {
+  user: string;
+};
+export default function DashBoardShell({ devices, user }: DashBoardShellProps) {
   const [showDeviceAddSidebar, setShowDeviceAddSidebar] =
     useState<boolean>(false);
 
@@ -26,7 +26,7 @@ export default function DashBoardShell({
             }}
           ></div>
           <div className="fixed top-0 right-0 h-full w-120 bg-gray-300 shadow-2xl z-50">
-            <AddDeviceSideBar />
+            <AddDeviceSideBar user={user} />
           </div>
         </div>
       )}
